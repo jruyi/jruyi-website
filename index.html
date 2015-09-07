@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A Java framework for easily developing network applications as you wish.">
+        
+        <link rel="canonical" href="http://www.jruyi.org/">
+        <link rel="shortcut icon" href="./img/favicon.ico">
+
+	<title>JRuyi</title>
+
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-46193512-1', 'jruyi.org');
+            ga('send', 'pageview');
+        </script>
+        
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">JRuyi</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="active">
+                        <a href=".">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="getting-started/">Getting Started</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="user-guide/">User Guide</a>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li class="disabled">
+                        <a rel="next" >
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="getting-started/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/jruyi/jruyi.git">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#jruyi">JRuyi</a></li>
+        
+            <li><a href="#introduction">Introduction</a></li>
+        
+            <li><a href="#download">Download</a></li>
+        
+            <li><a href="#software-requirements">Software Requirements</a></li>
+        
+            <li><a href="#getting-a-feel-for-jruyi">Getting a Feel for JRuyi</a></li>
+        
+            <li><a href="#javadoc">Javadoc</a></li>
+        
+            <li><a href="#license">License</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="jruyi">JRuyi<a class="headerlink" href="#jruyi" title="Permanent link"></a></h1>
+<p>A Java framework for easily developing network applications as you wish.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h2>
+<p>JRuyi is a Java framework for easily developing <strong>efficient</strong>, <strong>scalable</strong> and <strong>flexible</strong> network applications.  It hides the Java socket API by providing an event-driven asynchronous API over various transports, such as TCP and UDP, via <a href="http://en.wikipedia.org/wiki/New_I/O">Java NIO</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">What is Ruyi?</p>
+<p>Ruyi (Chinese: 如意; pinyin: rúyì; Wade–Giles: ju-i; literally "as [one] wishes; as [you] wish") is a curved
+decorative object that is a ceremonial sceptre in Chinese Buddhism or a talisman symbolizing power and good fortune
+in Chinese folklore.<br>
+Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
+</div>
+<p>The key features of JRuyi are listed as follows.</p>
+<h4 id="modularity">Modularity<a class="headerlink" href="#modularity" title="Permanent link"></a></h4>
+<p>JRuyi is built on OSGi framework which is a dynamic module system and service platform.</p>
+<h4 id="service-oriented">Service Oriented<a class="headerlink" href="#service-oriented" title="Permanent link"></a></h4>
+<p>JRuyi is an OSGi based framework; its functionality is mainly provided through services.</p>
+<h4 id="asynchronism">Asynchronism<a class="headerlink" href="#asynchronism" title="Permanent link"></a></h4>
+<p>JRuyi provides an event-driven asynchronous IO framework.</p>
+<h4 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link"></a></h4>
+<p>High throughput, low latency; provides a thread-local cache mechanism to avoid frequent creation of large objects such as buffers; provides chained buffers to minimize unnecessary memory copy.</p>
+<h4 id="extensible-command-line">Extensible Command Line<a class="headerlink" href="#extensible-command-line" title="Permanent link"></a></h4>
+<p>A command-line/shell backed by Apache Felix Gogo Runtime. New commands can be easily added via OSGi services.</p>
+<h4 id="dynamic-configuration">Dynamic Configuration<a class="headerlink" href="#dynamic-configuration" title="Permanent link"></a></h4>
+<p>Configurations can be created and updated dynamically through ruyi-cli.</p>
+<h4 id="hot-deployment">Hot Deployment<a class="headerlink" href="#hot-deployment" title="Permanent link"></a></h4>
+<p>Bundles can be installed, updated, started, stopped and uninstalled on the fly through ruyi-cli.</p>
+<h2 id="download">Download<a class="headerlink" href="#download" title="Permanent link"></a></h2>
+<p>JRuyi is available in two distributions: <code>jruyi</code> and <code>jruyi-core</code>.</p>
+<ul>
+<li><code>jruyi</code> - An OSGi based runtime which provides a lightweight container.</li>
+<li><code>jruyi-core</code> - A single jar library(OSGi bundle) for being easily embedded/integrated into any runtime.</li>
+</ul>
+<h3 id="get-jruyi">Get jruyi<a class="headerlink" href="#get-jruyi" title="Permanent link"></a></h3>
+<ul>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip">jruyi-2.3.0.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz">jruyi-2.3.0.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz.sha1">SHA1</a>]</li>
+</ul>
+<p>All previous releases of JRuyi can be found <a href="https://github.com/jruyi/jruyi/releases">here</a>.</p>
+<h3 id="get-jruyi-core">Get jruyi-core<a class="headerlink" href="#get-jruyi-core" title="Permanent link"></a></h3>
+<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.0/jruyi-core-2.3.0.jar">jruyi-core-2.3.0.jar</a>.</p>
+<p>To get jruyi-core through Maven, please add the following to your POM.</p>
+<pre><code class="pom">&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;jcenter&lt;/id&gt;
+        &lt;url&gt;https://jcenter.bintray.com/&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.jruyi&lt;/groupId&gt;
+        &lt;artifactId&gt;jruyi-core&lt;/artifactId&gt;
+        &lt;version&gt;2.3.0&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+
+<p>To get jruyi-core through Gradle, please add the following to your build script.</p>
+<pre><code class="gradle">repositories {
+    jcenter()
+}
+
+dependencies {
+    compile &quot;org.jruyi:jruyi-core:2.3.0&quot;
+}
+</code></pre>
+
+<h2 id="software-requirements">Software Requirements<a class="headerlink" href="#software-requirements" title="Permanent link"></a></h2>
+<p>Oracle/OpenJDK JDK 7+ is required to run JRuyi.</p>
+<h2 id="getting-a-feel-for-jruyi">Getting a Feel for JRuyi<a class="headerlink" href="#getting-a-feel-for-jruyi" title="Permanent link"></a></h2>
+<p>Please go to <a href="#download">Download</a> to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
+you will get the directory <code>jruyi-2.3.0</code> which will be referred as $JRUYI_HOME.</p>
+<div class="admonition note">
+<p class="admonition-title">Note:</p>
+<p>All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
+you to make them work on Windows. Just use the counterpart BAT command for a shell script mentioned later in this
+section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
+</div>
+<p>Please open a console, go to $JRUYI_HOME and run the following command to start JRuyi.</p>
+<pre><code>bin/ruyi
+</code></pre>
+
+<p>You should see something printed similar as follows.</p>
+<pre><code class="xml">21:20:36.369 INFO  [Ruyi] Start JRuyi (version=2.3.0)
+    ...
+21:20:36.758 INFO  [ExecutorService] Activating ExecutorService...
+21:20:36.765 INFO  [ExecutorService] ExecutorService activated: {corePoolSize=16, maxPoolSize=32, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
+21:20:36.780 INFO  [Scheduler] Scheduler activated: numberOfThreads=1
+21:20:36.806 INFO  [MessageQueue] MessageQueue activated
+21:20:36.873 INFO  [CliServer] Provisioning...
+    ...
+21:20:36.909 INFO  [Scheduler] Scheduler modified: numberOfThreads=1
+21:20:36.924 INFO  [CliServer] Done provisioning
+21:20:36.925 INFO  [ExecutorService] ExecutorService updated: {corePoolSize=200, maxPoolSize=200, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
+21:20:36.939 INFO  [BufferFactory] BufferFactory: unitCapacity=8192
+21:20:36.942 INFO  [ChannelAdmin] Activating ChannelAdmin...
+21:20:36.978 INFO  [SelectorThread] jruyi-selector-0 started
+21:20:36.979 INFO  [ChannelAdmin] ChannelAdmin activated
+21:20:36.979 INFO  [SelectorThread] jruyi-selector-1 started
+21:20:36.981 INFO  [TcpAcceptor] Starting TcpAcceptor...
+21:20:36.982 INFO  [TcpAcceptor] TcpAcceptor started
+21:20:36.985 INFO  [TcpServer] Starting TcpServer[jruyi.clid]...
+21:20:36.998 INFO  [TcpServer] TcpServer[jruyi.clid] started, listening on /127.0.0.1:6060
+</code></pre>
+
+<p>The last line means that the JRuyi clid which is itself implemented using JRuyi IO framework, is up, and the JRuyi shell is ready to use.</p>
+<p>Please open another console, go to $JRUYI_HOME and run the following command</p>
+<pre><code class="bash">bin/ruyi-cli
+</code></pre>
+
+<p>to enter the shell of JRuyi.</p>
+<pre><code class="xml">    _ _ __           _
+   | | '_ \_  _ _  _(_)
+ __| |   _| || | || | |
+|___/|_|\_\____|\__ |_|
+                |__/
+
+JRuyi (2.3.0)
+http://www.jruyi.org/
+
+Enter 'help' for a list of available commands.
+Enter 'help &lt;command&gt;' for more information on a specific command.
+Enter 'quit' or 'exit' to exit.
+
+
+localhost:6060&gt;
+</code></pre>
+
+<p>In the mean time, you should see the following similar log is printed on the console in which JRuyi was started.</p>
+<pre><code class="xml">21:25:12.293 DEBUG [TcpServer] TcpServer[jruyi.clid] Session#1: OPENED
+</code></pre>
+
+<p>This log means the ruyi-cli established a TCP connection to JRuyi clid for communication.</p>
+<p>Next, please enter <code>help</code> to get a list of available commands,</p>
+<pre><code class="xml">localhost:6060&gt; help
+bundle:inspect     bundle:install     bundle:list        bundle:refresh
+bundle:start       bundle:stop        bundle:uninstall   bundle:update
+conf:create        conf:delete        conf:exists        conf:list
+conf:update        io:list            io:start           io:stop
+jruyi:echo         jruyi:gc           jruyi:grep         jruyi:help
+jruyi:shutdown     jruyi:sysinfo      route:clear        route:delete
+route:list         route:set          scr:config         scr:disable
+scr:enable         scr:info           scr:list           tpe:info
+tpe:profiling
+localhost:6060&gt;
+</code></pre>
+
+<p>Enter <code>bundle:list</code> to see a list of installed bundles.</p>
+<pre><code class="xml">localhost:6060&gt; bundle:list
+START LEVEL 12
+[ ID ][  State  ][Level][     Name     ]
+    0     Active    0    org.apache.felix.framework-5.2.0
+    1     Active    1    org.jruyi.osgi.log-2.0.1
+    2     Active    2    org.apache.felix.metatype-1.1.2
+    3     Active    2    org.apache.felix.configadmin-1.8.8
+    4     Active    3    org.apache.felix.scr-1.8.2
+    5     Active    6    org.jruyi.common-2.3.0
+    6     Active    6    org.jruyi.tpe-2.0.1
+    7     Active    6    org.jruyi.me-2.0.2
+    8     Active    6    org.jruyi.io-2.3.0
+    9     Active   10    org.apache.felix.gogo.runtime-0.16.2
+   10     Active   10    org.jruyi.cmd-2.0.3
+   11     Active   10    org.jruyi.clid-2.3.0
+localhost:6060&gt;
+</code></pre>
+
+<p>Enter <code>conf:list</code> to see configurations.</p>
+<pre><code class="xml">localhost:6060&gt; conf:list
+    jruyi.common.scheduler: {numberOfThreads=1, terminationWaitTimeInSeconds=60}
+    jruyi.tpe: {corePoolSize=200, maxPoolSize=200, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
+    jruyi.me.mq: {msgTimeoutInSeconds=10}
+    jruyi.io.channeladmin: {numberOfSelectorThreads=0, numberOfIoThreads=0, capacityOfIoRingBuffer=16384}
+localhost:6060&gt;
+</code></pre>
+
+<p>Now, lets enter <code>exit</code> to exit the JRuyi shell.</p>
+<pre><code class="xml">localhost:6060&gt; exit
+</code></pre>
+
+<p>And you should see the following similar log is printed on the console in which JRuyi was started.</p>
+<pre><code class="xml">21:38:12.646 DEBUG [TcpServer] TcpServer[jruyi.clid] Session#1: CLOSED
+</code></pre>
+
+<p>This log says ruyi-cli is done the communication with JRuyi clid and closed the TCP connection.</p>
+<p>To stop JRuyi, simply press ctrl-c in the console in which JRuyi was started.
+Alternatively, you can run the following command under $JRUYI_HOME.</p>
+<pre><code class="bash">bin/ruyi-cli shutdown
+</code></pre>
+
+<p>And you will get the following similar logs printed on the console in which JRuyi was started.</p>
+<pre><code class="xml">21:40:13.796 INFO  [TcpServer] Stopping TcpServer[jruyi.clid]...
+21:40:13.796 INFO  [TcpServer] TcpServer[jruyi.clid] stopped
+21:40:13.797 INFO  [TcpAcceptor] Stopping TcpAcceptor...
+21:40:13.798 INFO  [TcpAcceptor] TcpAcceptor stopped
+21:40:13.801 INFO  [ChannelAdmin] Deactivating ChannelAdmin...
+21:40:13.801 INFO  [SelectorThread] jruyi-selector-0 stopped
+21:40:13.802 INFO  [SelectorThread] jruyi-selector-1 stopped
+21:40:13.802 INFO  [ChannelAdmin] ChannelAdmin deactivated
+21:40:13.804 INFO  [MessageQueue] MessageQueue deactivated
+21:40:13.804 INFO  [ExecutorService] Deactivating ExecutorService...
+21:40:13.804 DEBUG [ExecutorService] TPE executor terminated
+21:40:13.805 INFO  [ExecutorService] ExecutorService deactivated
+21:40:13.806 INFO  [Scheduler] Scheduler deactivated
+21:40:13.809 INFO  [Ruyi] Stopping JRuyi...
+21:40:13.809 INFO  [Ruyi] JRuyi stopped
+</code></pre>
+
+<h2 id="javadoc">Javadoc<a class="headerlink" href="#javadoc" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Online</th>
+<th>Archive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jruyi-api</td>
+<td>2.3.0</td>
+<td>[<a href="http://javadoc.jruyi.org/jruyi-api/v2.3.0/">html</a>]</td>
+<td>[<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-api-2.3.0-javadoc.zip">zip</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-api-2.3.0-javadoc.tar.gz">tar.gz</a>]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link"></a></h2>
+<p>JRuyi is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a>.</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <p>Copyright &copy; 2015 <a href="https://twitter.com/jruyi_org">JRuyi.org</a></p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 0.14.0
+Build Date UTC : 2015-09-07 01:45:07.090437
+-->
