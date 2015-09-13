@@ -127,6 +127,8 @@
         
             <li><a href="#building-an-echo-server">Building an Echo Server</a></li>
         
+            <li><a href="#building-a-daytime-server">Building a Daytime Server</a></li>
+        
     
     </ul>
 </div></div>
@@ -146,7 +148,7 @@ use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 <p>We also assume that you know how to download JRuyi.  If you don't, please go check <a href="../#download">Download</a>. And we will
 use <strong>$JRUYI_HOME</strong> to refer to the directory where the downloaded jruyi package is unpacked.</p>
 <h2 id="building-a-discard-server">Building a Discard Server<a class="headerlink" href="#building-a-discard-server" title="Permanent link"></a></h2>
-<p>Lets start with writing a <a href="http://tools.ietf.org/html/rfc863">discard</a> server which simply throws away any received data.</p>
+<p>Lets start with writing a <a href="http://tools.ietf.org/html/rfc863" title="Discard Protocol">discard</a> server which simply throws away any received data.</p>
 <p>To implement a discard server, simply create an <a href="http://javadoc.jruyi.org/jruyi-api/v2.2.0/org/jruyi/core/INioService.html">INioService</a>
 of type TcpServer, and start it as the following code shows.</p>
 <pre><code class="java">package org.jruyi.example.discard;
@@ -174,7 +176,7 @@ public class DiscardServer {
             // Start tcpServer
             tcpServer.start();
         } catch (Throwable t) {
-            c_logger.error(&quot;Error&quot;, t);
+            c_logger.error(&quot;Failed to start discard server&quot;, t);
         }
     }
 }
@@ -266,16 +268,16 @@ if you use <code>jruyi</code> runtime.  Let me show you how easy it is.</p>
 <pre><code>bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
 </code></pre>
 
-<p>The created TCP Server Endpoint is identified with <em>jruyi.example.discard</em>.</p>
+<p>The created TCP Server Endpoint is identified with <code>jruyi.example.discard</code>.</p>
 <p>As you see, a Session Service Endpoint of TcpServer is created by creating a configuration of <code>jruyi.io.tcpserver</code>.</p>
 <h4 id="3-configure-the-routing-table">3. Configure the Routing Table<a class="headerlink" href="#3-configure-the-routing-table" title="Permanent link"></a></h4>
 <p>Run the following command under <strong>$JRUYI_HOME</strong> to set a route.</p>
 <pre><code>bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
 </code></pre>
 
-<p>This is to tell Messaging Engine to dispatch any messages from endpoint <em>jruyi.example.discard</em> to endpoint <em>jruyi.me.endpoint.null</em> which is a builtin endpoint to swallow any messages dispatched to it.</p>
+<p>This is to tell Messaging Engine to dispatch any messages from endpoint <code>jruyi.example.discard</code> to endpoint <code>jruyi.me.endpoint.null</code> which is a builtin endpoint to swallow any messages dispatched to it.</p>
 <p>That's it! You just built a discard server using JRuyi and you can use telnet to make tests.</p>
-<p>To see the data that the discard server received, you can add a MsgLog Filter to the filter chain of the TcpServer <em>jruyi.example.discard</em> by running the following command under <strong>$JRUYI_HOME</strong>.</p>
+<p>To see the data that the discard server received, you can add the builtin MsgLog Filter to the filter chain of the TcpServer <code>jruyi.example.discard</code> by running the following command under <strong>$JRUYI_HOME</strong>.</p>
 <pre><code class="xml">bin/ruyi-cli conf:update '&quot;(jruyi.me.endpoint.id=jruyi.example.discard)&quot;' filters=jruyi.io.msglog.filter
 </code></pre>
 
@@ -285,7 +287,105 @@ if you use <code>jruyi</code> runtime.  Let me show you how easy it is.</p>
 <pre><code>bin/ruyi-cli shutdown
 </code></pre>
 
-<h2 id="building-an-echo-server">Building an Echo Server<a class="headerlink" href="#building-an-echo-server" title="Permanent link"></a></h2></div>
+<h2 id="building-an-echo-server">Building an Echo Server<a class="headerlink" href="#building-an-echo-server" title="Permanent link"></a></h2>
+<p>In <a href="#building-a-discard-server">Building a Discard Server</a>, you should have got the idea of how to receive data from
+client in JRuyi. But you might not be clear on how to send back some data to client. So next, let's show you the how-to
+by building an <a href="http://tools.ietf.org/html/rfc862" title="Echo Protocol">echo</a> server.</p>
+<p>The key difference to implement an echo server is that the SessionListener need hold a reference to the <code>INioService</code>.
+And use it to send back whatever is received in method <code>onMessageReceived</code>.</p>
+<pre><code class="java">package org.jruyi.example.echo;
+
+import org.jruyi.core.INioService;
+import org.jruyi.core.ITcpServerConfiguration;
+import org.jruyi.io.IBuffer;
+import org.jruyi.io.ISession;
+import org.jruyi.io.SessionListener;
+
+class EchoServerListener extends SessionListener&lt;IBuffer, IBuffer&gt; {
+
+    // Hold a reference to INioService
+    private final INioService&lt;IBuffer, IBuffer, ? extends ITcpServerConfiguration&gt; m_tcpServer;
+
+    EchoServerListener(INioService&lt;IBuffer, IBuffer, ? extends ITcpServerConfiguration&gt; tcpServer) {
+        m_tcpServer = tcpServer;
+    }
+
+    @Override
+    public void onMessageReceived(ISession session, IBuffer inMsg) {
+        // Send back whatever is received.
+        m_tcpServer.write(session, inMsg);
+    }
+}
+</code></pre>
+
+<p>Class <code>EchoServer</code> is almost the same as class <code>DiscardServer</code> except that the instance of <code>INioService</code> need be used to
+construct an instance of <code>EchoServerListener</code>. Below is the code for <code>EchoServer</code>.</p>
+<pre><code class="java">package org.jruyi.example.echo;
+
+import org.jruyi.core.INioService;
+import org.jruyi.core.ITcpServerConfiguration;
+import org.jruyi.core.RuyiCore;
+import org.jruyi.io.IBuffer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class EchoServer {
+
+    private static final Logger c_logger = LoggerFactory.getLogger(EchoServer.class);
+
+    static class ShutdownHook extends Thread {
+
+        private final INioService&lt;IBuffer, IBuffer, ? extends ITcpServerConfiguration&gt; m_tcpServer;
+
+        ShutdownHook(INioService&lt;IBuffer, IBuffer, ? extends ITcpServerConfiguration&gt; tcpServer) {
+            m_tcpServer = tcpServer;
+        }
+
+        @Override
+        public void run() {
+            m_tcpServer.stop();
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            // Build an Nio Service of type TcpServer
+            final INioService&lt;IBuffer, IBuffer, ? extends ITcpServerConfiguration&gt; tcpServer = RuyiCore
+                    .newTcpServerBuilder()
+                    .port(10007)
+                    .serviceId(&quot;jruyi.example.echo&quot;)
+                    .build();
+
+            // Set sessionListener
+            tcpServer.sessionListener(new EchoServerListener(tcpServer));
+
+            // Start tcpServer
+            tcpServer.start();
+
+            // To shutdown gracefully
+            Runtime.getRuntime().addShutdownHook(new ShutdownHook(tcpServer));
+        } catch (Throwable t) {
+            c_logger.error(&quot;Failed to start echo service&quot;, t);
+        }
+    }
+}
+</code></pre>
+
+<p>You can also use JRuyi runtime to build an echo server.</p>
+<p>After starting JRuyi, please execute the following commands under <strong>$JRUYI_HOME</strong>.</p>
+<pre><code class="xml"># Create a TCP server listening on port 10007
+bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
+
+# Route any message from endpoint jruyi.example.echo back to itself
+bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
+</code></pre>
+
+<p>Now, you should be able to test echo server by running the following command.</p>
+<pre><code class="xml">telnet localhost 10007
+</code></pre>
+
+<p>This time you will see that whatever you typed will be echoed.</p>
+<h2 id="building-a-daytime-server">Building a Daytime Server<a class="headerlink" href="#building-a-daytime-server" title="Permanent link"></a></h2></div>
             
         </div>
 
