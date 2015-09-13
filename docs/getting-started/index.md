@@ -16,7 +16,7 @@ use **$JRUYI_HOME** to refer to the directory where the downloaded jruyi package
 
 ## Building a Discard Server
 
-Lets start with writing a [discard](http://tools.ietf.org/html/rfc863) server which simply throws away any received data.
+Lets start with writing a [discard](http://tools.ietf.org/html/rfc863 "Discard Protocol") server which simply throws away any received data.
 
 To implement a discard server, simply create an [INioService](http://javadoc.jruyi.org/jruyi-api/v2.2.0/org/jruyi/core/INioService.html)
 of type TcpServer, and start it as the following code shows.
@@ -47,7 +47,7 @@ public class DiscardServer {
 			// Start tcpServer
 			tcpServer.start();
 		} catch (Throwable t) {
-			c_logger.error("Error", t);
+			c_logger.error("Failed to start discard server", t);
 		}
 	}
 }
@@ -166,7 +166,7 @@ Open a new console and run the following command under **$JRUYI_HOME** to create
 bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
 ```
 
-The created TCP Server Endpoint is identified with *jruyi.example.discard*.
+The created TCP Server Endpoint is identified with `jruyi.example.discard`.
 
 As you see, a Session Service Endpoint of TcpServer is created by creating a configuration of `jruyi.io.tcpserver`.
 
@@ -178,11 +178,11 @@ Run the following command under **$JRUYI_HOME** to set a route.
 bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
 ```
 
-This is to tell Messaging Engine to dispatch any messages from endpoint *jruyi.example.discard* to endpoint *jruyi.me.endpoint.null* which is a builtin endpoint to swallow any messages dispatched to it.
+This is to tell Messaging Engine to dispatch any messages from endpoint `jruyi.example.discard` to endpoint `jruyi.me.endpoint.null` which is a builtin endpoint to swallow any messages dispatched to it.
 
 That's it! You just built a discard server using JRuyi and you can use telnet to make tests.
 
-To see the data that the discard server received, you can add a MsgLog Filter to the filter chain of the TcpServer *jruyi.example.discard* by running the following command under **$JRUYI_HOME**.
+To see the data that the discard server received, you can add the builtin MsgLog Filter to the filter chain of the TcpServer `jruyi.example.discard` by running the following command under **$JRUYI_HOME**.
 
 ```xml
 bin/ruyi-cli conf:update '"(jruyi.me.endpoint.id=jruyi.example.discard)"' filters=jruyi.io.msglog.filter
@@ -199,3 +199,111 @@ bin/ruyi-cli shutdown
 ```
 
 ## Building an Echo Server
+
+In [Building a Discard Server](#building-a-discard-server), you should have got the idea of how to receive data from
+client in JRuyi. But you might not be clear on how to send back some data to client. So next, let's show you the how-to
+by building an [echo](http://tools.ietf.org/html/rfc862 "Echo Protocol") server.
+
+The key difference to implement an echo server is that the SessionListener need hold a reference to the `INioService`.
+And use it to send back whatever is received in method `onMessageReceived`.
+
+```java
+package org.jruyi.example.echo;
+
+import org.jruyi.core.INioService;
+import org.jruyi.core.ITcpServerConfiguration;
+import org.jruyi.io.IBuffer;
+import org.jruyi.io.ISession;
+import org.jruyi.io.SessionListener;
+
+class EchoServerListener extends SessionListener<IBuffer, IBuffer> {
+
+	// Hold a reference to INioService
+	private final INioService<IBuffer, IBuffer, ? extends ITcpServerConfiguration> m_tcpServer;
+
+	EchoServerListener(INioService<IBuffer, IBuffer, ? extends ITcpServerConfiguration> tcpServer) {
+		m_tcpServer = tcpServer;
+	}
+
+	@Override
+	public void onMessageReceived(ISession session, IBuffer inMsg) {
+		// Send back whatever is received.
+		m_tcpServer.write(session, inMsg);
+	}
+}
+```
+
+Class `EchoServer` is almost the same as class `DiscardServer` except that the instance of `INioService` need be used to
+construct an instance of `EchoServerListener`. Below is the code for `EchoServer`.
+
+```java
+package org.jruyi.example.echo;
+
+import org.jruyi.core.INioService;
+import org.jruyi.core.ITcpServerConfiguration;
+import org.jruyi.core.RuyiCore;
+import org.jruyi.io.IBuffer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class EchoServer {
+
+	private static final Logger c_logger = LoggerFactory.getLogger(EchoServer.class);
+
+	static class ShutdownHook extends Thread {
+
+		private final INioService<IBuffer, IBuffer, ? extends ITcpServerConfiguration> m_tcpServer;
+
+		ShutdownHook(INioService<IBuffer, IBuffer, ? extends ITcpServerConfiguration> tcpServer) {
+			m_tcpServer = tcpServer;
+		}
+
+		@Override
+		public void run() {
+			m_tcpServer.stop();
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			// Build an Nio Service of type TcpServer
+			final INioService<IBuffer, IBuffer, ? extends ITcpServerConfiguration> tcpServer = RuyiCore
+					.newTcpServerBuilder()
+					.port(10007)
+					.serviceId("jruyi.example.echo")
+					.build();
+
+			// Set sessionListener
+			tcpServer.sessionListener(new EchoServerListener(tcpServer));
+
+			// Start tcpServer
+			tcpServer.start();
+
+			// To shutdown gracefully
+			Runtime.getRuntime().addShutdownHook(new ShutdownHook(tcpServer));
+		} catch (Throwable t) {
+			c_logger.error("Failed to start echo service", t);
+		}
+	}
+}
+```
+
+You can also use JRuyi runtime to build an echo server.
+
+After starting JRuyi, please execute the following commands under **$JRUYI_HOME**.
+
+```xml
+# Create a TCP server listening on port 10007
+bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
+
+# Route any message from endpoint jruyi.example.echo back to itself
+bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
+```
+
+Now, you should be able to test echo server by running the following command.
+```xml
+telnet localhost 10007
+```
+This time you will see that whatever you typed will be echoed.
+
+## Building a Daytime Server
