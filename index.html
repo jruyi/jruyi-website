@@ -174,12 +174,12 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
 </ul>
 <h3 id="get-jruyi">Get jruyi<a class="headerlink" href="#get-jruyi" title="Permanent link"></a></h3>
 <ul>
-<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip">jruyi-2.3.0.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip.sha1">SHA1</a>]</li>
-<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz">jruyi-2.3.0.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip">jruyi-2.3.1.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz">jruyi-2.3.1.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz.sha1">SHA1</a>]</li>
 </ul>
 <p>All previous releases of JRuyi can be found <a href="https://github.com/jruyi/jruyi/releases">here</a>.</p>
 <h3 id="get-jruyi-core">Get jruyi-core<a class="headerlink" href="#get-jruyi-core" title="Permanent link"></a></h3>
-<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.0/jruyi-core-2.3.0.jar">jruyi-core-2.3.0.jar</a>.</p>
+<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.1/jruyi-core-2.3.1.jar">jruyi-core-2.3.1.jar</a>.</p>
 <p>To get jruyi-core through Maven, please add the following to your POM.</p>
 <pre><code class="pom">&lt;repositories&gt;
     &lt;repository&gt;
@@ -192,7 +192,7 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
     &lt;dependency&gt;
         &lt;groupId&gt;org.jruyi&lt;/groupId&gt;
         &lt;artifactId&gt;jruyi-core&lt;/artifactId&gt;
-        &lt;version&gt;2.3.0&lt;/version&gt;
+        &lt;version&gt;2.3.1&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
@@ -203,7 +203,7 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
 }
 
 dependencies {
-    compile &quot;org.jruyi:jruyi-core:2.3.0&quot;
+    compile &quot;org.jruyi:jruyi-core:2.3.1&quot;
 }
 </code></pre>
 
@@ -211,7 +211,7 @@ dependencies {
 <p>Oracle/OpenJDK JDK 7+ is required to run JRuyi.</p>
 <h2 id="getting-a-feel-for-jruyi">Getting a Feel for JRuyi<a class="headerlink" href="#getting-a-feel-for-jruyi" title="Permanent link"></a></h2>
 <p>Please go to <a href="#download">Download</a> to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
-you will get the directory <code>jruyi-2.3.0</code> which will be referred as $JRUYI_HOME.</p>
+you will get the directory <code>jruyi-2.3.1</code> which will be referred as $JRUYI_HOME.</p>
 <div class="admonition note">
 <p class="admonition-title">Note:</p>
 <p>All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
@@ -219,11 +219,11 @@ you to make them work on Windows. Just use the counterpart BAT command for a she
 section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 </div>
 <p>Please open a console, go to $JRUYI_HOME and run the following command to start JRuyi.</p>
-<pre><code>bin/ruyi
+<pre><code class="bash">$ bin/ruyi
 </code></pre>
 
 <p>You should see something printed similar as follows.</p>
-<pre><code class="xml">21:20:36.369 INFO  [Ruyi] Start JRuyi (version=2.3.0)
+<pre><code class="xml">21:20:36.369 INFO  [Ruyi] Start JRuyi (version=2.3.1)
     ...
 21:20:36.758 INFO  [ExecutorService] Activating ExecutorService...
 21:20:36.765 INFO  [ExecutorService] ExecutorService activated: {corePoolSize=16, maxPoolSize=32, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
@@ -247,7 +247,7 @@ section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 
 <p>The last line means that the JRuyi clid which is itself implemented using JRuyi IO framework, is up, and the JRuyi shell is ready to use.</p>
 <p>Please open another console, go to $JRUYI_HOME and run the following command</p>
-<pre><code class="bash">bin/ruyi-cli
+<pre><code class="bash">$ bin/ruyi-cli
 </code></pre>
 
 <p>to enter the shell of JRuyi.</p>
@@ -257,7 +257,7 @@ section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 |___/|_|\_\____|\__ |_|
                 |__/
 
-JRuyi (2.3.0)
+JRuyi (2.3.1)
 http://www.jruyi.org/
 
 Enter 'help' for a list of available commands.
@@ -292,26 +292,26 @@ localhost:6060&gt;
 START LEVEL 12
 [ ID ][  State  ][Level][     Name     ]
     0     Active    0    org.apache.felix.framework-5.2.0
-    1     Active    1    org.jruyi.osgi.log-2.0.1
+    1     Active    1    org.jruyi.osgi.log-2.0.2
     2     Active    2    org.apache.felix.metatype-1.1.2
     3     Active    2    org.apache.felix.configadmin-1.8.8
-    4     Active    3    org.apache.felix.scr-1.8.2
-    5     Active    6    org.jruyi.common-2.3.0
-    6     Active    6    org.jruyi.tpe-2.0.1
-    7     Active    6    org.jruyi.me-2.0.2
-    8     Active    6    org.jruyi.io-2.3.0
+    4     Active    3    org.apache.felix.scr-2.0.2
+    5     Active    6    org.jruyi.common-2.3.1
+    6     Active    6    org.jruyi.tpe-2.0.2
+    7     Active    6    org.jruyi.me-2.0.3
+    8     Active    6    org.jruyi.io-2.3.1
     9     Active   10    org.apache.felix.gogo.runtime-0.16.2
-   10     Active   10    org.jruyi.cmd-2.0.3
-   11     Active   10    org.jruyi.clid-2.3.0
+   10     Active   10    org.jruyi.cmd-2.0.4
+   11     Active   10    org.jruyi.clid-2.3.1
 localhost:6060&gt;
 </code></pre>
 
 <p>Enter <code>conf:list</code> to see configurations.</p>
 <pre><code class="xml">localhost:6060&gt; conf:list
     jruyi.common.scheduler: {numberOfThreads=1, terminationWaitTimeInSeconds=60}
-    jruyi.tpe: {corePoolSize=200, maxPoolSize=200, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
+    jruyi.tpe: {keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
     jruyi.me.mq: {msgTimeoutInSeconds=10}
-    jruyi.io.channeladmin: {numberOfSelectorThreads=0, numberOfIoThreads=0, capacityOfIoRingBuffer=16384}
+    jruyi.io.channeladmin: {numberOfSelectorThreads=0, numberOfIoThreads=0, capacityOfIoRingBuffer=4096}
 localhost:6060&gt;
 </code></pre>
 
@@ -326,7 +326,7 @@ localhost:6060&gt;
 <p>This log says ruyi-cli is done the communication with JRuyi clid and closed the TCP connection.</p>
 <p>To stop JRuyi, simply press ctrl-c in the console in which JRuyi was started.
 Alternatively, you can run the following command under $JRUYI_HOME.</p>
-<pre><code class="bash">bin/ruyi-cli shutdown
+<pre><code class="bash">$ bin/ruyi-cli shutdown
 </code></pre>
 
 <p>And you will get the following similar logs printed on the console in which JRuyi was started.</p>
@@ -360,9 +360,9 @@ Alternatively, you can run the following command under $JRUYI_HOME.</p>
 <tbody>
 <tr>
 <td>jruyi-api</td>
-<td>2.3.0</td>
-<td>[<a href="http://javadoc.jruyi.org/jruyi-api/v2.3.0/">html</a>]</td>
-<td>[<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-api-2.3.0-javadoc.zip">zip</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-api-2.3.0-javadoc.tar.gz">tar.gz</a>]</td>
+<td>2.3.1</td>
+<td>[<a href="http://javadoc.jruyi.org/jruyi-api/v2.3.1/">html</a>]</td>
+<td>[<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.zip">zip</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.tar.gz">tar.gz</a>]</td>
 </tr>
 </tbody>
 </table>
@@ -416,5 +416,5 @@ Alternatively, you can run the following command under $JRUYI_HOME.</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-13 02:11:01.356012
+Build Date UTC : 2015-09-21 04:47:45.483468
 -->

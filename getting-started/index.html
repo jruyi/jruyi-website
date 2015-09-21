@@ -222,20 +222,20 @@ relate to JRuyi.  You can find the solution in the source code
 <a href="https://github.com/jruyi/jruyi-examples/blob/master/discard/src/main/java/org/jruyi/example/discard/DiscardServer.java">DiscardServer.java</a>.</p>
 <p>If you have git-cloned the <a href="https://github.com/jruyi/jruyi-examples">jruyi-examples</a> from Github, please go to the directory
 <strong>$JRUYI_EXAMPLES_HOME</strong>/discard.  Then build the project by running the following command.</p>
-<pre><code class="xml">./gradlew clean build
+<pre><code class="bash">$ ./gradlew clean build
 </code></pre>
 
 <p>If building successfully, you should get the jar locating at <strong>$JRUYI_EXAMPLES_HOME</strong>/discard/build/libs, and you can start
 the discard server as follows.</p>
-<pre><code class="xml">java -jar build/libs/discard-1.0.0-SNAPSHOT.jar
+<pre><code class="bash">$ java -jar build/libs/discard-1.0.0-SNAPSHOT.jar
 </code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">For Maven Users:</p>
 <p>Please use the following command to build the project.</p>
-<p><code>mvn clean package</code></p>
+<p><code>$ mvn clean package</code></p>
 <p>And use the following command to run the server.</p>
-<p><code>java -jar target/discard-1.0.0-SNAPSHOT.jar</code></p>
+<p><code>$ java -jar target/discard-1.0.0-SNAPSHOT.jar</code></p>
 </div>
 <p>You should see logs printed on console similar as follows.</p>
 <pre><code class="xml">[main] INFO org.jruyi.common.internal.Scheduler - Scheduler activated: numberOfThreads=1
@@ -251,7 +251,7 @@ the discard server as follows.</p>
 </code></pre>
 
 <p>OK, we just got the discard server started. It's time to use telnet to make a test.</p>
-<pre><code class="xml">telnet localhost 10009
+<pre><code class="xml">$ telnet localhost 10009
 </code></pre>
 
 <p>Then just type something and you won't get any response.
@@ -260,31 +260,31 @@ But you should see what you typed be dumped on the console in which the discard 
 if you use <code>jruyi</code> runtime.  Let me show you how easy it is.</p>
 <h4 id="1-start-jruyi">1. Start JRuyi<a class="headerlink" href="#1-start-jruyi" title="Permanent link"></a></h4>
 <p>Please go to <strong>$JRUYI_HOME</strong> and start JRuyi as follows.</p>
-<pre><code>bin/ruyi
+<pre><code class="bash">$ bin/ruyi
 </code></pre>
 
 <h4 id="2-create-a-session-service-endpoint">2. Create a Session Service Endpoint<a class="headerlink" href="#2-create-a-session-service-endpoint" title="Permanent link"></a></h4>
 <p>Open a new console and run the following command under <strong>$JRUYI_HOME</strong> to create a TCP server (Session Service) listening on port 10009.</p>
-<pre><code>bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
+<pre><code class="xml">$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
 </code></pre>
 
 <p>The created TCP Server Endpoint is identified with <code>jruyi.example.discard</code>.</p>
 <p>As you see, a Session Service Endpoint of TcpServer is created by creating a configuration of <code>jruyi.io.tcpserver</code>.</p>
 <h4 id="3-configure-the-routing-table">3. Configure the Routing Table<a class="headerlink" href="#3-configure-the-routing-table" title="Permanent link"></a></h4>
 <p>Run the following command under <strong>$JRUYI_HOME</strong> to set a route.</p>
-<pre><code>bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
+<pre><code class="xml">$ bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
 </code></pre>
 
 <p>This is to tell Messaging Engine to dispatch any messages from endpoint <code>jruyi.example.discard</code> to endpoint <code>jruyi.me.endpoint.null</code> which is a builtin endpoint to swallow any messages dispatched to it.</p>
 <p>That's it! You just built a discard server using JRuyi and you can use telnet to make tests.</p>
 <p>To see the data that the discard server received, you can add the builtin MsgLog Filter to the filter chain of the TcpServer <code>jruyi.example.discard</code> by running the following command under <strong>$JRUYI_HOME</strong>.</p>
-<pre><code class="xml">bin/ruyi-cli conf:update '&quot;(jruyi.me.endpoint.id=jruyi.example.discard)&quot;' filters=jruyi.io.msglog.filter
+<pre><code class="xml">$ bin/ruyi-cli conf:update '&quot;(jruyi.me.endpoint.id=jruyi.example.discard)&quot;' filters=jruyi.io.msglog.filter
 </code></pre>
 
 <p>Now use telnet to test again.  You should see what you typed be dumped on the console in which JRuyi was started.</p>
 <h4 id="4-shutdown-jruyi">4. Shutdown JRuyi<a class="headerlink" href="#4-shutdown-jruyi" title="Permanent link"></a></h4>
 <p>To shutdown JRuyi, simply press ctrl-c in the console in which JRuyi was started. Alternatively, you can run the following command under <strong>$JRUYI_HOME</strong>.</p>
-<pre><code>bin/ruyi-cli shutdown
+<pre><code class="bash">$ bin/ruyi-cli shutdown
 </code></pre>
 
 <h2 id="building-an-echo-server">Building an Echo Server<a class="headerlink" href="#building-an-echo-server" title="Permanent link"></a></h2>
@@ -374,14 +374,14 @@ public class EchoServer {
 <p>You can also use JRuyi runtime to build an echo server.</p>
 <p>After starting JRuyi, please execute the following commands under <strong>$JRUYI_HOME</strong>.</p>
 <pre><code class="xml"># Create a TCP server listening on port 10007
-bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
+$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
 
 # Route any message from endpoint jruyi.example.echo back to itself
-bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
+$ bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
 </code></pre>
 
 <p>Now, you should be able to test echo server by running the following command.</p>
-<pre><code class="xml">telnet localhost 10007
+<pre><code class="xml">$ telnet localhost 10007
 </code></pre>
 
 <p>This time you will see that whatever you typed will be echoed.</p>
