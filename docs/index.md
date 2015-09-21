@@ -44,14 +44,14 @@ JRuyi is available in two distributions: `jruyi` and `jruyi-core`.
 
 ### Get jruyi
 
-* [jruyi-2.3.0.zip](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.zip.sha1)]
-* [jruyi-2.3.0.tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-2.3.0.tar.gz.sha1)]
+* [jruyi-2.3.1.zip](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip.sha1)]
+* [jruyi-2.3.1.tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz.sha1)]
 
 All previous releases of JRuyi can be found [here](https://github.com/jruyi/jruyi/releases).
 
 ### Get jruyi-core
 
-The jar is available from JCenter: [jruyi-core-2.3.0.jar](https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.0/jruyi-core-2.3.0.jar).
+The jar is available from JCenter: [jruyi-core-2.3.1.jar](https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.1/jruyi-core-2.3.1.jar).
 
 To get jruyi-core through Maven, please add the following to your POM.
 
@@ -67,7 +67,7 @@ To get jruyi-core through Maven, please add the following to your POM.
     <dependency>
         <groupId>org.jruyi</groupId>
         <artifactId>jruyi-core</artifactId>
-        <version>2.3.0</version>
+        <version>2.3.1</version>
     </dependency>
 </dependencies>
 ```
@@ -80,7 +80,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.jruyi:jruyi-core:2.3.0"
+    compile "org.jruyi:jruyi-core:2.3.1"
 }
 ```
 
@@ -91,7 +91,7 @@ Oracle/OpenJDK JDK 7+ is required to run JRuyi.
 ## Getting a Feel for JRuyi
 
 Please go to [Download](#download) to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
-you will get the directory `jruyi-2.3.0` which will be referred as $JRUYI_HOME.
+you will get the directory `jruyi-2.3.1` which will be referred as $JRUYI_HOME.
 
 !!! note "Note:"
     All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
@@ -100,14 +100,14 @@ you will get the directory `jruyi-2.3.0` which will be referred as $JRUYI_HOME.
 
 Please open a console, go to $JRUYI_HOME and run the following command to start JRuyi.
 
-```
-bin/ruyi
+```bash
+$ bin/ruyi
 ```
 
 You should see something printed similar as follows.
 
 ```xml
-21:20:36.369 INFO  [Ruyi] Start JRuyi (version=2.3.0)
+21:20:36.369 INFO  [Ruyi] Start JRuyi (version=2.3.1)
     ...
 21:20:36.758 INFO  [ExecutorService] Activating ExecutorService...
 21:20:36.765 INFO  [ExecutorService] ExecutorService activated: {corePoolSize=16, maxPoolSize=32, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
@@ -134,7 +134,7 @@ The last line means that the JRuyi clid which is itself implemented using JRuyi 
 Please open another console, go to $JRUYI_HOME and run the following command
 
 ```bash
-bin/ruyi-cli
+$ bin/ruyi-cli
 ```
 
 to enter the shell of JRuyi.
@@ -146,7 +146,7 @@ to enter the shell of JRuyi.
 |___/|_|\_\____|\__ |_|
                 |__/
 
-JRuyi (2.3.0)
+JRuyi (2.3.1)
 http://www.jruyi.org/
 
 Enter 'help' for a list of available commands.
@@ -188,17 +188,17 @@ localhost:6060> bundle:list
 START LEVEL 12
 [ ID ][  State  ][Level][     Name     ]
     0     Active    0    org.apache.felix.framework-5.2.0
-    1     Active    1    org.jruyi.osgi.log-2.0.1
+    1     Active    1    org.jruyi.osgi.log-2.0.2
     2     Active    2    org.apache.felix.metatype-1.1.2
     3     Active    2    org.apache.felix.configadmin-1.8.8
-    4     Active    3    org.apache.felix.scr-1.8.2
-    5     Active    6    org.jruyi.common-2.3.0
-    6     Active    6    org.jruyi.tpe-2.0.1
-    7     Active    6    org.jruyi.me-2.0.2
-    8     Active    6    org.jruyi.io-2.3.0
+    4     Active    3    org.apache.felix.scr-2.0.2
+    5     Active    6    org.jruyi.common-2.3.1
+    6     Active    6    org.jruyi.tpe-2.0.2
+    7     Active    6    org.jruyi.me-2.0.3
+    8     Active    6    org.jruyi.io-2.3.1
     9     Active   10    org.apache.felix.gogo.runtime-0.16.2
-   10     Active   10    org.jruyi.cmd-2.0.3
-   11     Active   10    org.jruyi.clid-2.3.0
+   10     Active   10    org.jruyi.cmd-2.0.4
+   11     Active   10    org.jruyi.clid-2.3.1
 localhost:6060>
 ```
 
@@ -207,9 +207,9 @@ Enter `conf:list` to see configurations.
 ```xml
 localhost:6060> conf:list
     jruyi.common.scheduler: {numberOfThreads=1, terminationWaitTimeInSeconds=60}
-    jruyi.tpe: {corePoolSize=200, maxPoolSize=200, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
+    jruyi.tpe: {keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
     jruyi.me.mq: {msgTimeoutInSeconds=10}
-    jruyi.io.channeladmin: {numberOfSelectorThreads=0, numberOfIoThreads=0, capacityOfIoRingBuffer=16384}
+    jruyi.io.channeladmin: {numberOfSelectorThreads=0, numberOfIoThreads=0, capacityOfIoRingBuffer=4096}
 localhost:6060>
 ```
 
@@ -231,7 +231,7 @@ To stop JRuyi, simply press ctrl-c in the console in which JRuyi was started.
 Alternatively, you can run the following command under $JRUYI_HOME.
 
 ```bash
-bin/ruyi-cli shutdown
+$ bin/ruyi-cli shutdown
 ```
 
 And you will get the following similar logs printed on the console in which JRuyi was started.
@@ -258,7 +258,7 @@ And you will get the following similar logs printed on the console in which JRuy
 
 Name | Version | Online | Archive
 --- | --- | --- | ---
-jruyi-api | 2.3.0 | [[html](http://javadoc.jruyi.org/jruyi-api/v2.3.0/)] | [[zip](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-api-2.3.0-javadoc.zip)] [[tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.0/jruyi-api-2.3.0-javadoc.tar.gz)]
+jruyi-api | 2.3.1 | [[html](http://javadoc.jruyi.org/jruyi-api/v2.3.1/)] | [[zip](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.zip)] [[tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.tar.gz)]
 
 ## License
 

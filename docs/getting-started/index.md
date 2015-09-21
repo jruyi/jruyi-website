@@ -99,28 +99,28 @@ relate to JRuyi.  You can find the solution in the source code
 If you have git-cloned the [jruyi-examples](https://github.com/jruyi/jruyi-examples) from Github, please go to the directory
 **$JRUYI_EXAMPLES_HOME**/discard.  Then build the project by running the following command.
 
-```xml
-./gradlew clean build
+```bash
+$ ./gradlew clean build
 ```
 
 If building successfully, you should get the jar locating at **$JRUYI_EXAMPLES_HOME**/discard/build/libs, and you can start
 the discard server as follows.
 
-```xml
-java -jar build/libs/discard-1.0.0-SNAPSHOT.jar
+```bash
+$ java -jar build/libs/discard-1.0.0-SNAPSHOT.jar
 ```
 
 !!! Note "For Maven Users:"
     Please use the following command to build the project.
 
     ```
-        mvn clean package
+        $ mvn clean package
     ```
 
     And use the following command to run the server.
 
     ```
-        java -jar target/discard-1.0.0-SNAPSHOT.jar
+        $ java -jar target/discard-1.0.0-SNAPSHOT.jar
     ```
 
 You should see logs printed on console similar as follows.
@@ -141,7 +141,7 @@ You should see logs printed on console similar as follows.
 OK, we just got the discard server started. It's time to use telnet to make a test.
 
 ```xml
-telnet localhost 10009
+$ telnet localhost 10009
 ```
 
 Then just type something and you won't get any response.
@@ -154,16 +154,16 @@ if you use `jruyi` runtime.  Let me show you how easy it is.
 
 Please go to **$JRUYI_HOME** and start JRuyi as follows.
 
-```
-bin/ruyi
+```bash
+$ bin/ruyi
 ```
 
 #### 2. Create a Session Service Endpoint
 
 Open a new console and run the following command under **$JRUYI_HOME** to create a TCP server (Session Service) listening on port 10009.
 
-```
-bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
+```xml
+$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
 ```
 
 The created TCP Server Endpoint is identified with `jruyi.example.discard`.
@@ -174,8 +174,8 @@ As you see, a Session Service Endpoint of TcpServer is created by creating a con
 
 Run the following command under **$JRUYI_HOME** to set a route.
 
-```
-bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
+```xml
+$ bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
 ```
 
 This is to tell Messaging Engine to dispatch any messages from endpoint `jruyi.example.discard` to endpoint `jruyi.me.endpoint.null` which is a builtin endpoint to swallow any messages dispatched to it.
@@ -185,7 +185,7 @@ That's it! You just built a discard server using JRuyi and you can use telnet to
 To see the data that the discard server received, you can add the builtin MsgLog Filter to the filter chain of the TcpServer `jruyi.example.discard` by running the following command under **$JRUYI_HOME**.
 
 ```xml
-bin/ruyi-cli conf:update '"(jruyi.me.endpoint.id=jruyi.example.discard)"' filters=jruyi.io.msglog.filter
+$ bin/ruyi-cli conf:update '"(jruyi.me.endpoint.id=jruyi.example.discard)"' filters=jruyi.io.msglog.filter
 ```
 
 Now use telnet to test again.  You should see what you typed be dumped on the console in which JRuyi was started.
@@ -194,8 +194,8 @@ Now use telnet to test again.  You should see what you typed be dumped on the co
 
 To shutdown JRuyi, simply press ctrl-c in the console in which JRuyi was started. Alternatively, you can run the following command under **$JRUYI_HOME**.
 
-```
-bin/ruyi-cli shutdown
+```bash
+$ bin/ruyi-cli shutdown
 ```
 
 ## Building an Echo Server
@@ -294,15 +294,15 @@ After starting JRuyi, please execute the following commands under **$JRUYI_HOME*
 
 ```xml
 # Create a TCP server listening on port 10007
-bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
+$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
 
 # Route any message from endpoint jruyi.example.echo back to itself
-bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
+$ bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
 ```
 
 Now, you should be able to test echo server by running the following command.
 ```xml
-telnet localhost 10007
+$ telnet localhost 10007
 ```
 This time you will see that whatever you typed will be echoed.
 
