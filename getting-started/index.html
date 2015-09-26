@@ -265,7 +265,7 @@ if you use <code>jruyi</code> runtime.  Let me show you how easy it is.</p>
 
 <h4 id="2-create-a-session-service-endpoint">2. Create a Session Service Endpoint<a class="headerlink" href="#2-create-a-session-service-endpoint" title="Permanent link"></a></h4>
 <p>Open a new console and run the following command under <strong>$JRUYI_HOME</strong> to create a TCP server (Session Service) listening on port 10009.</p>
-<pre><code class="xml">$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
+<pre><code class="xml">$ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
 </code></pre>
 
 <p>The created TCP Server Endpoint is identified with <code>jruyi.example.discard</code>.</p>
@@ -374,7 +374,7 @@ public class EchoServer {
 <p>You can also use JRuyi runtime to build an echo server.</p>
 <p>After starting JRuyi, please execute the following commands under <strong>$JRUYI_HOME</strong>.</p>
 <pre><code class="xml"># Create a TCP server listening on port 10007
-$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
+$ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
 
 # Route any message from endpoint jruyi.example.echo back to itself
 $ bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
