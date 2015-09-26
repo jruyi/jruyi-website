@@ -9,7 +9,7 @@ JRuyi is a Java framework for easily developing **efficient**, **scalable** and 
 !!! note "What is Ruyi?"
     Ruyi (Chinese: 如意; pinyin: rúyì; Wade–Giles: ju-i; literally "as [one] wishes; as [you] wish") is a curved
     decorative object that is a ceremonial sceptre in Chinese Buddhism or a talisman symbolizing power and good fortune
-    in Chinese folklore.<br>
+    in Chinese folklore.<br><br>
     Read [more ...](http://en.wikipedia.org/wiki/Ruyi_\(scepter\))
 
 The key features of JRuyi are listed as follows.
@@ -25,6 +25,9 @@ JRuyi provides an event-driven asynchronous IO framework.
 
 #### Performance
 High throughput, low latency; provides a thread-local cache mechanism to avoid frequent creation of large objects such as buffers; provides chained buffers to minimize unnecessary memory copy.
+
+#### TCP Connection Pooling and Multiplexing
+Provides an efficient IO service supporting TCP connection pooling and multiplexing.
 
 #### Extensible Command Line
 A command-line/shell backed by Apache Felix Gogo Runtime. New commands can be easily added via OSGi services.
@@ -44,14 +47,14 @@ JRuyi is available in two distributions: `jruyi` and `jruyi-core`.
 
 ### Get jruyi
 
-* [jruyi-2.3.1.zip](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.zip.sha1)]
-* [jruyi-2.3.1.tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-2.3.1.tar.gz.sha1)]
+* [jruyi-2.3.2.zip](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip.sha1)]
+* [jruyi-2.3.2.tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz.sha1)]
 
 All previous releases of JRuyi can be found [here](https://github.com/jruyi/jruyi/releases).
 
 ### Get jruyi-core
 
-The jar is available from JCenter: [jruyi-core-2.3.1.jar](https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.1/jruyi-core-2.3.1.jar).
+The jar is available from JCenter: [jruyi-core-2.3.2.jar](https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.2/jruyi-core-2.3.2.jar).
 
 To get jruyi-core through Maven, please add the following to your POM.
 
@@ -67,7 +70,7 @@ To get jruyi-core through Maven, please add the following to your POM.
     <dependency>
         <groupId>org.jruyi</groupId>
         <artifactId>jruyi-core</artifactId>
-        <version>2.3.1</version>
+        <version>2.3.2</version>
     </dependency>
 </dependencies>
 ```
@@ -80,7 +83,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.jruyi:jruyi-core:2.3.1"
+    compile "org.jruyi:jruyi-core:2.3.2"
 }
 ```
 
@@ -91,7 +94,7 @@ Oracle/OpenJDK JDK 7+ is required to run JRuyi.
 ## Getting a Feel for JRuyi
 
 Please go to [Download](#download) to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
-you will get the directory `jruyi-2.3.1` which will be referred as $JRUYI_HOME.
+you will get the directory `jruyi-2.3.2` which will be referred as $JRUYI_HOME.
 
 !!! note "Note:"
     All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
@@ -107,26 +110,30 @@ $ bin/ruyi
 You should see something printed similar as follows.
 
 ```xml
-21:20:36.369 INFO  [Ruyi] Start JRuyi (version=2.3.1)
+21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.3.2)
     ...
-21:20:36.758 INFO  [ExecutorService] Activating ExecutorService...
-21:20:36.765 INFO  [ExecutorService] ExecutorService activated: {corePoolSize=16, maxPoolSize=32, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
-21:20:36.780 INFO  [Scheduler] Scheduler activated: numberOfThreads=1
-21:20:36.806 INFO  [MessageQueue] MessageQueue activated
-21:20:36.873 INFO  [CliServer] Provisioning...
+21:28:37.191 INFO  [Ruyi] Instance Name: default
     ...
-21:20:36.909 INFO  [Scheduler] Scheduler modified: numberOfThreads=1
-21:20:36.924 INFO  [CliServer] Done provisioning
-21:20:36.925 INFO  [ExecutorService] ExecutorService updated: {corePoolSize=200, maxPoolSize=200, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
-21:20:36.939 INFO  [BufferFactory] BufferFactory: unitCapacity=8192
-21:20:36.942 INFO  [ChannelAdmin] Activating ChannelAdmin...
-21:20:36.978 INFO  [SelectorThread] jruyi-selector-0 started
-21:20:36.979 INFO  [ChannelAdmin] ChannelAdmin activated
-21:20:36.979 INFO  [SelectorThread] jruyi-selector-1 started
-21:20:36.981 INFO  [TcpAcceptor] Starting TcpAcceptor...
-21:20:36.982 INFO  [TcpAcceptor] TcpAcceptor started
-21:20:36.985 INFO  [TcpServer] Starting TcpServer[jruyi.clid]...
-21:20:36.998 INFO  [TcpServer] TcpServer[jruyi.clid] started, listening on /127.0.0.1:6060
+21:28:37.238 INFO  [BootLoader] Loading bundles...
+    ...
+21:28:37.437 INFO  [BootLoader] Done loading bundles
+21:28:37.658 INFO  [ExecutorService] Activating ExecutorService...
+21:28:37.663 INFO  [ExecutorService] ExecutorService activated: {corePoolSize=16, maxPoolSize=32, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
+21:28:37.684 INFO  [Scheduler] Scheduler activated: numberOfThreads=1
+21:28:37.706 INFO  [MessageQueue] MessageQueue activated
+21:28:37.788 INFO  [Provisioner] Start provisioning...
+    ...
+21:28:37.842 INFO  [Provisioner] Done provisioning
+21:28:37.871 INFO  [BufferFactory] BufferFactory: unitCapacity=8192
+21:28:37.873 INFO  [ChannelAdmin] Activating ChannelAdmin...
+21:28:37.885 INFO  [SelectorThread] jruyi-selector-0 started
+21:28:37.886 INFO  [ChannelAdmin] ChannelAdmin activated
+21:28:37.886 INFO  [SelectorThread] jruyi-selector-1 started
+21:28:37.889 INFO  [TcpAcceptor] Starting TcpAcceptor...
+21:28:37.889 INFO  [TcpAcceptor] TcpAcceptor started
+21:28:37.892 INFO  [TcpServer] Starting TcpServer[jruyi.clid]...
+21:28:37.896 INFO  [TcpServer] TcpServer[jruyi.clid] started, listening on /127.0.0.1:6060
+21:28:37.897 INFO  [ExecutorService] ExecutorService updated: {corePoolSize=16, maxPoolSize=32, keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
 ```
 
 The last line means that the JRuyi clid which is itself implemented using JRuyi IO framework, is up, and the JRuyi shell is ready to use.
@@ -146,7 +153,7 @@ to enter the shell of JRuyi.
 |___/|_|\_\____|\__ |_|
                 |__/
 
-JRuyi (2.3.1)
+JRuyi (2.3.2)
 http://www.jruyi.org/
 
 Enter 'help' for a list of available commands.
@@ -160,7 +167,7 @@ localhost:6060>
 In the mean time, you should see the following similar log is printed on the console in which JRuyi was started.
 
 ```xml
-21:25:12.293 DEBUG [TcpServer] TcpServer[jruyi.clid] Session#1: OPENED
+21:31:35.452 DEBUG [TcpServer] TcpServer[jruyi.clid] Session#1: OPENED
 ```
 
 This log means the ruyi-cli established a TCP connection to JRuyi clid for communication.
@@ -192,13 +199,13 @@ START LEVEL 12
     2     Active    2    org.apache.felix.metatype-1.1.2
     3     Active    2    org.apache.felix.configadmin-1.8.8
     4     Active    3    org.apache.felix.scr-2.0.2
-    5     Active    6    org.jruyi.common-2.3.1
+    5     Active    6    org.jruyi.common-2.3.2
     6     Active    6    org.jruyi.tpe-2.0.2
-    7     Active    6    org.jruyi.me-2.0.3
-    8     Active    6    org.jruyi.io-2.3.1
+    7     Active    6    org.jruyi.me-2.0.4
+    8     Active    6    org.jruyi.io-2.3.2
     9     Active   10    org.apache.felix.gogo.runtime-0.16.2
    10     Active   10    org.jruyi.cmd-2.0.4
-   11     Active   10    org.jruyi.clid-2.3.1
+   11     Active   10    org.jruyi.clid-2.3.2
 localhost:6060>
 ```
 
@@ -206,6 +213,7 @@ Enter `conf:list` to see configurations.
 
 ```xml
 localhost:6060> conf:list
+    jruyi.clid: {bindAddr=localhost, port=6060, sessionIdleTimeoutInSeconds=300}
     jruyi.common.scheduler: {numberOfThreads=1, terminationWaitTimeInSeconds=60}
     jruyi.tpe: {keepAliveTimeInSeconds=10, queueCapacity=8192, terminationWaitTimeInSeconds=60}
     jruyi.me.mq: {msgTimeoutInSeconds=10}
@@ -222,7 +230,7 @@ localhost:6060> exit
 And you should see the following similar log is printed on the console in which JRuyi was started.
 
 ```xml
-21:38:12.646 DEBUG [TcpServer] TcpServer[jruyi.clid] Session#1: CLOSED
+21:35:30.359 DEBUG [TcpServer] TcpServer[jruyi.clid] Session#1: CLOSED
 ```
 
 This log says ruyi-cli is done the communication with JRuyi clid and closed the TCP connection.
@@ -237,21 +245,22 @@ $ bin/ruyi-cli shutdown
 And you will get the following similar logs printed on the console in which JRuyi was started.
 
 ```xml
-21:40:13.796 INFO  [TcpServer] Stopping TcpServer[jruyi.clid]...
-21:40:13.796 INFO  [TcpServer] TcpServer[jruyi.clid] stopped
-21:40:13.797 INFO  [TcpAcceptor] Stopping TcpAcceptor...
-21:40:13.798 INFO  [TcpAcceptor] TcpAcceptor stopped
-21:40:13.801 INFO  [ChannelAdmin] Deactivating ChannelAdmin...
-21:40:13.801 INFO  [SelectorThread] jruyi-selector-0 stopped
-21:40:13.802 INFO  [SelectorThread] jruyi-selector-1 stopped
-21:40:13.802 INFO  [ChannelAdmin] ChannelAdmin deactivated
-21:40:13.804 INFO  [MessageQueue] MessageQueue deactivated
-21:40:13.804 INFO  [ExecutorService] Deactivating ExecutorService...
-21:40:13.804 DEBUG [ExecutorService] TPE executor terminated
-21:40:13.805 INFO  [ExecutorService] ExecutorService deactivated
-21:40:13.806 INFO  [Scheduler] Scheduler deactivated
-21:40:13.809 INFO  [Ruyi] Stopping JRuyi...
-21:40:13.809 INFO  [Ruyi] JRuyi stopped
+21:37:25.038 INFO  [Ruyi] Stopping JRuyi...
+21:37:25.044 INFO  [TcpServer] Stopping TcpServer[jruyi.clid]...
+21:37:25.044 INFO  [TcpServer] TcpServer[jruyi.clid] stopped
+21:37:25.046 INFO  [TcpAcceptor] Stopping TcpAcceptor...
+21:37:25.046 INFO  [TcpAcceptor] TcpAcceptor stopped
+21:37:25.060 INFO  [ChannelAdmin] Deactivating ChannelAdmin...
+21:37:25.060 INFO  [SelectorThread] jruyi-selector-0 stopped
+21:37:25.061 INFO  [SelectorThread] jruyi-selector-1 stopped
+21:37:25.061 INFO  [ChannelAdmin] ChannelAdmin deactivated
+21:37:25.069 INFO  [MessageQueue] MessageQueue deactivated
+21:37:25.069 INFO  [ExecutorService] Deactivating ExecutorService...
+21:37:25.070 DEBUG [ExecutorService] TPE executor terminated
+21:37:25.070 INFO  [ExecutorService] ExecutorService deactivated
+21:37:25.074 INFO  [Scheduler] Scheduler deactivated
+21:37:25.082 INFO  [Ruyi] JRuyi stopped
+
 ```
 
 ## Javadoc

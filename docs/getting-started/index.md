@@ -18,7 +18,7 @@ use **$JRUYI_HOME** to refer to the directory where the downloaded jruyi package
 
 Lets start with writing a [discard](http://tools.ietf.org/html/rfc863 "Discard Protocol") server which simply throws away any received data.
 
-To implement a discard server, simply create an [INioService](http://javadoc.jruyi.org/jruyi-api/v2.2.0/org/jruyi/core/INioService.html)
+To implement a discard server, simply create an [INioService](http://javadoc.jruyi.org/jruyi-api/v2.3.1/org/jruyi/core/INioService.html)
 of type TcpServer, and start it as the following code shows.
 
 ```java
