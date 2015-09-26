@@ -163,7 +163,7 @@ $ bin/ruyi
 Open a new console and run the following command under **$JRUYI_HOME** to create a TCP server (Session Service) listening on port 10009.
 
 ```xml
-$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
+$ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
 ```
 
 The created TCP Server Endpoint is identified with `jruyi.example.discard`.
@@ -294,7 +294,7 @@ After starting JRuyi, please execute the following commands under **$JRUYI_HOME*
 
 ```xml
 # Create a TCP server listening on port 10007
-$ bin/ruyi-cli conf:create jruyi.io.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
+$ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
 
 # Route any message from endpoint jruyi.example.echo back to itself
 $ bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
