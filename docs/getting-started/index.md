@@ -168,7 +168,7 @@ $ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruy
 
 The created TCP Server Endpoint is identified with `jruyi.example.discard`.
 
-As you see, a Session Service Endpoint of TcpServer is created by creating a configuration of `jruyi.io.tcpserver`.
+As you see, a Session Service Endpoint of TcpServer is created by creating a configuration of `jruyi.me.endpoint.tcpserver`.
 
 #### 3. Configure the Routing Table
 
