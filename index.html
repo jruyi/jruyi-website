@@ -176,12 +176,12 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
 </ul>
 <h3 id="get-jruyi">Get jruyi<a class="headerlink" href="#get-jruyi" title="Permanent link"></a></h3>
 <ul>
-<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip">jruyi-2.3.2.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip.sha1">SHA1</a>]</li>
-<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz">jruyi-2.3.2.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip">jruyi-2.4.0.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz">jruyi-2.4.0.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz.sha1">SHA1</a>]</li>
 </ul>
 <p>All previous releases of JRuyi can be found <a href="https://github.com/jruyi/jruyi/releases">here</a>.</p>
 <h3 id="get-jruyi-core">Get jruyi-core<a class="headerlink" href="#get-jruyi-core" title="Permanent link"></a></h3>
-<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.2/jruyi-core-2.3.2.jar">jruyi-core-2.3.2.jar</a>.</p>
+<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.4.0/jruyi-core-2.4.0.jar">jruyi-core-2.4.0.jar</a>.</p>
 <p>To get jruyi-core through Maven, please add the following to your POM.</p>
 <pre><code class="pom">&lt;repositories&gt;
     &lt;repository&gt;
@@ -194,7 +194,7 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
     &lt;dependency&gt;
         &lt;groupId&gt;org.jruyi&lt;/groupId&gt;
         &lt;artifactId&gt;jruyi-core&lt;/artifactId&gt;
-        &lt;version&gt;2.3.2&lt;/version&gt;
+        &lt;version&gt;2.4.0&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
@@ -205,7 +205,7 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
 }
 
 dependencies {
-    compile &quot;org.jruyi:jruyi-core:2.3.2&quot;
+    compile &quot;org.jruyi:jruyi-core:2.4.0&quot;
 }
 </code></pre>
 
@@ -213,7 +213,7 @@ dependencies {
 <p>Oracle/OpenJDK JDK 7+ is required to run JRuyi.</p>
 <h2 id="getting-a-feel-for-jruyi">Getting a Feel for JRuyi<a class="headerlink" href="#getting-a-feel-for-jruyi" title="Permanent link"></a></h2>
 <p>Please go to <a href="#download">Download</a> to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
-you will get the directory <code>jruyi-2.3.2</code> which will be referred as $JRUYI_HOME.</p>
+you will get the directory <code>jruyi-2.4.0</code> which will be referred as $JRUYI_HOME.</p>
 <div class="admonition note">
 <p class="admonition-title">Note:</p>
 <p>All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
@@ -225,7 +225,7 @@ section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 </code></pre>
 
 <p>You should see something printed similar as follows.</p>
-<pre><code class="xml">21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.3.2)
+<pre><code class="xml">21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.4.0)
     ...
 21:28:37.191 INFO  [Ruyi] Instance Name: default
     ...
@@ -263,7 +263,7 @@ section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 |___/|_|\_\____|\__ |_|
                 |__/
 
-JRuyi (2.3.2)
+JRuyi (2.4.0)
 http://www.jruyi.org/
 
 Enter 'help' for a list of available commands.
@@ -297,18 +297,18 @@ localhost:6060&gt;
 <pre><code class="xml">localhost:6060&gt; bundle:list
 START LEVEL 12
 [ ID ][  State  ][Level][     Name     ]
-    0     Active    0    org.apache.felix.framework-5.2.0
+    0     Active    0    org.apache.felix.framework-5.4.0
     1     Active    1    org.jruyi.osgi.log-2.0.2
     2     Active    2    org.apache.felix.metatype-1.1.2
     3     Active    2    org.apache.felix.configadmin-1.8.8
     4     Active    3    org.apache.felix.scr-2.0.2
-    5     Active    6    org.jruyi.common-2.3.2
+    5     Active    6    org.jruyi.common-2.4.0
     6     Active    6    org.jruyi.tpe-2.0.2
     7     Active    6    org.jruyi.me-2.0.4
-    8     Active    6    org.jruyi.io-2.3.2
+    8     Active    6    org.jruyi.io-2.3.3
     9     Active   10    org.apache.felix.gogo.runtime-0.16.2
    10     Active   10    org.jruyi.cmd-2.0.4
-   11     Active   10    org.jruyi.clid-2.3.2
+   11     Active   10    org.jruyi.clid-2.3.3
 localhost:6060&gt;
 </code></pre>
 
@@ -368,9 +368,9 @@ Alternatively, you can run the following command under $JRUYI_HOME.</p>
 <tbody>
 <tr>
 <td>jruyi-api</td>
-<td>2.3.1</td>
-<td>[<a href="http://javadoc.jruyi.org/jruyi-api/v2.3.1/">html</a>]</td>
-<td>[<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.zip">zip</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.tar.gz">tar.gz</a>]</td>
+<td>2.4.0</td>
+<td>[<a href="http://javadoc.jruyi.org/jruyi-api/v2.4.0/">html</a>]</td>
+<td>[<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-api-2.4.0-javadoc.zip">zip</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-api-2.4.0-javadoc.tar.gz">tar.gz</a>]</td>
 </tr>
 </tbody>
 </table>
@@ -424,5 +424,5 @@ Alternatively, you can run the following command under $JRUYI_HOME.</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-26 21:06:00.297003
+Build Date UTC : 2015-10-18 19:54:46.620030
 -->
