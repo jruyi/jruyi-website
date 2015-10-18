@@ -47,14 +47,14 @@ JRuyi is available in two distributions: `jruyi` and `jruyi-core`.
 
 ### Get jruyi
 
-* [jruyi-2.3.2.zip](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.zip.sha1)]
-* [jruyi-2.3.2.tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.3.2/jruyi-2.3.2.tar.gz.sha1)]
+* [jruyi-2.4.0.zip](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip.sha1)]
+* [jruyi-2.4.0.tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz) [[MD5](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz.md5)] [[SHA1](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz.sha1)]
 
 All previous releases of JRuyi can be found [here](https://github.com/jruyi/jruyi/releases).
 
 ### Get jruyi-core
 
-The jar is available from JCenter: [jruyi-core-2.3.2.jar](https://jcenter.bintray.com/org/jruyi/jruyi-core/2.3.2/jruyi-core-2.3.2.jar).
+The jar is available from JCenter: [jruyi-core-2.4.0.jar](https://jcenter.bintray.com/org/jruyi/jruyi-core/2.4.0/jruyi-core-2.4.0.jar).
 
 To get jruyi-core through Maven, please add the following to your POM.
 
@@ -70,7 +70,7 @@ To get jruyi-core through Maven, please add the following to your POM.
     <dependency>
         <groupId>org.jruyi</groupId>
         <artifactId>jruyi-core</artifactId>
-        <version>2.3.2</version>
+        <version>2.4.0</version>
     </dependency>
 </dependencies>
 ```
@@ -83,7 +83,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.jruyi:jruyi-core:2.3.2"
+    compile "org.jruyi:jruyi-core:2.4.0"
 }
 ```
 
@@ -94,7 +94,7 @@ Oracle/OpenJDK JDK 7+ is required to run JRuyi.
 ## Getting a Feel for JRuyi
 
 Please go to [Download](#download) to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
-you will get the directory `jruyi-2.3.2` which will be referred as $JRUYI_HOME.
+you will get the directory `jruyi-2.4.0` which will be referred as $JRUYI_HOME.
 
 !!! note "Note:"
     All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
@@ -110,7 +110,7 @@ $ bin/ruyi
 You should see something printed similar as follows.
 
 ```xml
-21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.3.2)
+21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.4.0)
     ...
 21:28:37.191 INFO  [Ruyi] Instance Name: default
     ...
@@ -153,7 +153,7 @@ to enter the shell of JRuyi.
 |___/|_|\_\____|\__ |_|
                 |__/
 
-JRuyi (2.3.2)
+JRuyi (2.4.0)
 http://www.jruyi.org/
 
 Enter 'help' for a list of available commands.
@@ -194,18 +194,18 @@ Enter `bundle:list` to see a list of installed bundles.
 localhost:6060> bundle:list
 START LEVEL 12
 [ ID ][  State  ][Level][     Name     ]
-    0     Active    0    org.apache.felix.framework-5.2.0
+    0     Active    0    org.apache.felix.framework-5.4.0
     1     Active    1    org.jruyi.osgi.log-2.0.2
     2     Active    2    org.apache.felix.metatype-1.1.2
     3     Active    2    org.apache.felix.configadmin-1.8.8
     4     Active    3    org.apache.felix.scr-2.0.2
-    5     Active    6    org.jruyi.common-2.3.2
+    5     Active    6    org.jruyi.common-2.4.0
     6     Active    6    org.jruyi.tpe-2.0.2
     7     Active    6    org.jruyi.me-2.0.4
-    8     Active    6    org.jruyi.io-2.3.2
+    8     Active    6    org.jruyi.io-2.3.3
     9     Active   10    org.apache.felix.gogo.runtime-0.16.2
    10     Active   10    org.jruyi.cmd-2.0.4
-   11     Active   10    org.jruyi.clid-2.3.2
+   11     Active   10    org.jruyi.clid-2.3.3
 localhost:6060>
 ```
 
@@ -267,7 +267,7 @@ And you will get the following similar logs printed on the console in which JRuy
 
 Name | Version | Online | Archive
 --- | --- | --- | ---
-jruyi-api | 2.3.1 | [[html](http://javadoc.jruyi.org/jruyi-api/v2.3.1/)] | [[zip](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.zip)] [[tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.3.1/jruyi-api-2.3.1-javadoc.tar.gz)]
+jruyi-api | 2.4.0 | [[html](http://javadoc.jruyi.org/jruyi-api/v2.4.0/)] | [[zip](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-api-2.4.0-javadoc.zip)] [[tar.gz](https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-api-2.4.0-javadoc.tar.gz)]
 
 ## License
 
