@@ -176,12 +176,12 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
 </ul>
 <h3 id="get-jruyi">Get jruyi<a class="headerlink" href="#get-jruyi" title="Permanent link"></a></h3>
 <ul>
-<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip">jruyi-2.4.0.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.zip.sha1">SHA1</a>]</li>
-<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz">jruyi-2.4.0.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.0/jruyi-2.4.0.tar.gz.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.4.1/jruyi-2.4.1.zip">jruyi-2.4.1.zip</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.1/jruyi-2.4.1.zip.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.1/jruyi-2.4.1.zip.sha1">SHA1</a>]</li>
+<li><a href="https://github.com/jruyi/jruyi/releases/download/v2.4.1/jruyi-2.4.1.tar.gz">jruyi-2.4.1.tar.gz</a> [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.1/jruyi-2.4.1.tar.gz.md5">MD5</a>] [<a href="https://github.com/jruyi/jruyi/releases/download/v2.4.1/jruyi-2.4.1.tar.gz.sha1">SHA1</a>]</li>
 </ul>
 <p>All previous releases of JRuyi can be found <a href="https://github.com/jruyi/jruyi/releases">here</a>.</p>
 <h3 id="get-jruyi-core">Get jruyi-core<a class="headerlink" href="#get-jruyi-core" title="Permanent link"></a></h3>
-<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.4.0/jruyi-core-2.4.0.jar">jruyi-core-2.4.0.jar</a>.</p>
+<p>The jar is available from JCenter: <a href="https://jcenter.bintray.com/org/jruyi/jruyi-core/2.4.1/jruyi-core-2.4.1.jar">jruyi-core-2.4.1.jar</a>.</p>
 <p>To get jruyi-core through Maven, please add the following to your POM.</p>
 <pre><code class="pom">&lt;repositories&gt;
     &lt;repository&gt;
@@ -194,7 +194,7 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
     &lt;dependency&gt;
         &lt;groupId&gt;org.jruyi&lt;/groupId&gt;
         &lt;artifactId&gt;jruyi-core&lt;/artifactId&gt;
-        &lt;version&gt;2.4.0&lt;/version&gt;
+        &lt;version&gt;2.4.1&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
@@ -205,7 +205,7 @@ Read <a href="http://en.wikipedia.org/wiki/Ruyi_(scepter)">more ...</a></p>
 }
 
 dependencies {
-    compile &quot;org.jruyi:jruyi-core:2.4.0&quot;
+    compile &quot;org.jruyi:jruyi-core:2.4.1&quot;
 }
 </code></pre>
 
@@ -213,7 +213,7 @@ dependencies {
 <p>Oracle/OpenJDK JDK 7+ is required to run JRuyi.</p>
 <h2 id="getting-a-feel-for-jruyi">Getting a Feel for JRuyi<a class="headerlink" href="#getting-a-feel-for-jruyi" title="Permanent link"></a></h2>
 <p>Please go to <a href="#download">Download</a> to get the latest release of JRuyi. Unpack the archive that you downloaded, and then
-you will get the directory <code>jruyi-2.4.0</code> which will be referred as $JRUYI_HOME.</p>
+you will get the directory <code>jruyi-2.4.1</code> which will be referred as $JRUYI_HOME.</p>
 <div class="admonition note">
 <p class="admonition-title">Note:</p>
 <p>All the instructions in this section are given under a UNIX-like environment. It should be very straightforward for
@@ -225,7 +225,7 @@ section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 </code></pre>
 
 <p>You should see something printed similar as follows.</p>
-<pre><code class="xml">21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.4.0)
+<pre><code class="xml">21:28:37.190 INFO  [Ruyi] Start JRuyi (version=2.4.1)
     ...
 21:28:37.191 INFO  [Ruyi] Instance Name: default
     ...
@@ -263,7 +263,7 @@ section. For example, use ruyi.bat for ruyi and ruyi-cli.bat for ruyi-cli.</p>
 |___/|_|\_\____|\__ |_|
                 |__/
 
-JRuyi (2.4.0)
+JRuyi (2.4.1)
 http://www.jruyi.org/
 
 Enter 'help' for a list of available commands.
@@ -305,7 +305,7 @@ START LEVEL 12
     5     Active    6    org.jruyi.common-2.4.0
     6     Active    6    org.jruyi.tpe-2.0.2
     7     Active    6    org.jruyi.me-2.0.4
-    8     Active    6    org.jruyi.io-2.3.3
+    8     Active    6    org.jruyi.io-2.3.4
     9     Active   10    org.apache.felix.gogo.runtime-0.16.2
    10     Active   10    org.jruyi.cmd-2.0.4
    11     Active   10    org.jruyi.clid-2.3.3
@@ -352,7 +352,6 @@ Alternatively, you can run the following command under $JRUYI_HOME.</p>
 21:37:25.070 INFO  [ExecutorService] ExecutorService deactivated
 21:37:25.074 INFO  [Scheduler] Scheduler deactivated
 21:37:25.082 INFO  [Ruyi] JRuyi stopped
-
 </code></pre>
 
 <h2 id="javadoc">Javadoc<a class="headerlink" href="#javadoc" title="Permanent link"></a></h2>
@@ -424,5 +423,5 @@ Alternatively, you can run the following command under $JRUYI_HOME.</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-10-18 19:54:46.620030
+Build Date UTC : 2015-10-25 03:30:17.452304
 -->
