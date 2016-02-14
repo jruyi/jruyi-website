@@ -14,5 +14,5 @@ markdown_extensions:
         permalink: 
     - admonition:
 
-copyright: Copyright &copy; 2015 <a href="https://twitter.com/jruyi_org">JRuyi.org</a>
+copyright: Copyright &copy; 2016 <a href="https://twitter.com/jruyi_org">JRuyi.org</a>
 google_analytics: ['UA-46193512-1', 'jruyi.org']
