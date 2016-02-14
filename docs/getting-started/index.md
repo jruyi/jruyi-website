@@ -125,7 +125,7 @@ $ java -jar build/libs/discard-1.0.0-SNAPSHOT.jar
 
 You should see logs printed on console similar as follows.
 
-```xml
+```text
 [main] INFO org.jruyi.common.internal.Scheduler - Scheduler activated: numberOfThreads=1
 [main] INFO org.jruyi.io.channel.ChannelAdmin - Activating ChannelAdmin...
 [jruyi-selector-0] INFO org.jruyi.io.channel.SelectorThread - jruyi-selector-0 started
@@ -140,63 +140,14 @@ You should see logs printed on console similar as follows.
 
 OK, we just got the discard server started. It's time to use telnet to make a test.
 
-```xml
+```text
 $ telnet localhost 10009
 ```
 
 Then just type something and you won't get any response.
 But you should see what you typed be dumped on the console in which the discard server started.
 
-Congratulations! You just learned how to use the lib `jruyi-core` to build a discard server.  But it would be much easier
-if you use `jruyi` runtime.  Let me show you how easy it is.
-
-#### 1. Start JRuyi
-
-Please go to **$JRUYI_HOME** and start JRuyi as follows.
-
-```bash
-$ bin/ruyi
-```
-
-#### 2. Create a Session Service Endpoint
-
-Open a new console and run the following command under **$JRUYI_HOME** to create a TCP server (Session Service) listening on port 10009.
-
-```xml
-$ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruyi.example.discard port=10009
-```
-
-The created TCP Server Endpoint is identified with `jruyi.example.discard`.
-
-As you see, a Session Service Endpoint of TcpServer is created by creating a configuration of `jruyi.me.endpoint.tcpserver`.
-
-#### 3. Configure the Routing Table
-
-Run the following command under **$JRUYI_HOME** to set a route.
-
-```xml
-$ bin/ruyi-cli route:set jruyi.example.discard jruyi.me.endpoint.null
-```
-
-This is to tell Messaging Engine to dispatch any messages from endpoint `jruyi.example.discard` to endpoint `jruyi.me.endpoint.null` which is a builtin endpoint to swallow any messages dispatched to it.
-
-That's it! You just built a discard server using JRuyi and you can use telnet to make tests.
-
-To see the data that the discard server received, you can add the builtin MsgLog Filter to the filter chain of the TcpServer `jruyi.example.discard` by running the following command under **$JRUYI_HOME**.
-
-```xml
-$ bin/ruyi-cli conf:update '"(jruyi.me.endpoint.id=jruyi.example.discard)"' filters=jruyi.io.msglog.filter
-```
-
-Now use telnet to test again.  You should see what you typed be dumped on the console in which JRuyi was started.
-
-#### 4. Shutdown JRuyi
-
-To shutdown JRuyi, simply press ctrl-c in the console in which JRuyi was started. Alternatively, you can run the following command under **$JRUYI_HOME**.
-
-```bash
-$ bin/ruyi-cli shutdown
-```
+Congratulations! You just learned how to use the lib `jruyi-core` to build a discard server.
 
 ## Building an Echo Server
 
@@ -287,23 +238,5 @@ public class EchoServer {
 	}
 }
 ```
-
-You can also use JRuyi runtime to build an echo server.
-
-After starting JRuyi, please execute the following commands under **$JRUYI_HOME**.
-
-```xml
-# Create a TCP server listening on port 10007
-$ bin/ruyi-cli conf:create jruyi.me.endpoint.tcpserver jruyi.me.endpoint.id=jruyi.example.echo port=10007
-
-# Route any message from endpoint jruyi.example.echo back to itself
-$ bin/ruyi-cli route:set jruyi.example.echo jruyi.example.echo
-```
-
-Now, you should be able to test echo server by running the following command.
-```xml
-$ telnet localhost 10007
-```
-This time you will see that whatever you typed will be echoed.
 
 ## Building a Daytime Server
